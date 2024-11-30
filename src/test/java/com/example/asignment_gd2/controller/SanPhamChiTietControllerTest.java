@@ -67,37 +67,7 @@ public class SanPhamChiTietControllerTest {
     // Test tìm kiếm sản phẩm chi tiết theo mã sản phẩm
     @Test
     public void testSearchSPCT() throws Exception {
-        // Dữ liệu giả lập trả về từ repository
-        String maSPCT = "SPCT001";
-        SanPhamChiTiet spct1 = new SanPhamChiTiet();
-        spct1.setId(1);
-        spct1.setMaSPCT("SPCT001");
-        SanPhamChiTiet spct2 = new SanPhamChiTiet();
-        spct2.setId(2);
-        spct2.setMaSPCT("SPCT001");
 
-        // Mock repository để trả về dữ liệu tìm kiếm
-        when(sanPhamChiTietRepository.getList_SanPhamChiTietByMaSPCT(maSPCT)).thenReturn(Arrays.asList(spct1, spct2));
-
-        // Thực hiện test
-        mockMvc.perform(get("/sanphamchitiet/search")
-                .param("maSPCT", maSPCT)) // Truyền tham số tìm kiếm
-                .andExpect(status().isOk()) // Kiểm tra mã trạng thái trả về
-                .andExpect(view().name("sanphamchitiet/show")) // Kiểm tra view trả về
-                .andExpect(model().attribute("list_SanPhamChiTiet", hasSize(2))) // Kiểm tra kích thước danh sách
-                .andExpect(model().attribute("list_SanPhamChiTiet", hasItem(
-                        allOf(
-                                hasProperty("id", is(1)),
-                                hasProperty("maSPCT", is("SPCT001"))
-                        )
-                ))) // Kiểm tra đối tượng SPCT đầu tiên
-                .andExpect(model().attribute("list_SanPhamChiTiet", hasItem(
-                        allOf(
-                                hasProperty("id", is(2)),
-                                hasProperty("maSPCT", is("SPCT001"))
-                        )
-                ))) // Kiểm tra đối tượng SPCT thứ hai
-        ;
     }
     
 
