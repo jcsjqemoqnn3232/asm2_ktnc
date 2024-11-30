@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public interface SanPhamChiTietRepository extends JpaRepository<SanPhamChiTiet, Integer> {
@@ -21,4 +22,5 @@ public interface SanPhamChiTietRepository extends JpaRepository<SanPhamChiTiet, 
 //    Object getListSanPhamChiTietTimKiem(Integer idSearch);
     // Thêm phương thức phân trang
     Page<SanPhamChiTiet> findAll(Pageable pageable);
+
 }
